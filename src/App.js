@@ -5,7 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [preguntas, setPreguntas] = useState([]);
-  let idActualPregunta = 1;
 
   const addQuestion = (nueva) => {
         nueva.id = crypto.randomUUID();
