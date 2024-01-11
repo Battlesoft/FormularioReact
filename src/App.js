@@ -8,8 +8,8 @@ function App() {
   let idActualPregunta = 1;
 
   const addQuestion = (nueva) => {
-        nueva.id = idActualPregunta;
-        idActualPregunta++;
+        nueva.id = crypto.randomUUID();
+
         setPreguntas([...preguntas, nueva]);
   };
 
@@ -21,8 +21,8 @@ function App() {
     <div>
       <FormularioPregunta aniadePregunta={addQuestion} />
       <div>
-        {preguntas.map((pregunta) => (
-          <Pregunta key={pregunta.id} pregunta={pregunta} deleteQuestion={deleteQuestion} />
+        {preguntas.map((pregunta, index) => (
+          <Pregunta key={pregunta.id} pregunta={pregunta} deleteQuestion={deleteQuestion} index={index} />
         ))}
 
       </div>

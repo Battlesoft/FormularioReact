@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 
+
+
 const FormularioPregunta = ({ aniadePregunta }) => {
     const [pregunta, setPregunta] = useState({
         enunciado: "Enunciado",

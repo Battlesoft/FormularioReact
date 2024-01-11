@@ -1,7 +1,7 @@
 import React from 'react';
 import Swal from 'sweetalert2';
 
-const Pregunta = ({ pregunta, deleteQuestion }) => {
+const Pregunta = ({ pregunta, deleteQuestion, index}) => {
     const { id, enunciado, respuesta1, respuesta2, respuesta3, respuesta4 } = pregunta;
 
     const handleDeleteQuestion = () => {
@@ -24,9 +24,9 @@ const Pregunta = ({ pregunta, deleteQuestion }) => {
     
     return (
         <div className="card m-3" style={{ width: "18rem" }}>
-            <button type="button" className="btn-close" aria-label="Close" onClick={handleDeleteQuestion}></button>
+            <button type="button" className="btn-close" aria-label="Close" onClick={()=>handleDeleteQuestion (id)}></button>
             <div className="card-body">
-                <h5 className="card-title">Pregunta nº{id}</h5>
+                <h5 className="card-title">Pregunta nº{index}</h5>
                 <h6 className="card-subtitle mb-2 text-muted">{enunciado}</h6>
                 <div className="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group">
                     <input type="radio" className="btn-check" name={`btn-respuesta-${id}`} id={`${id}-vbtn-radio1`} autoComplete="off" />
