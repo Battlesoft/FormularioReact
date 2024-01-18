@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Swal from 'sweetalert2';
-
+import { CharacterContext } from '../App';
 
 
 const FormularioPregunta = ({ aniadePregunta }) => {
+    const { addQuestion } = useContext(CharacterContext);
     const [pregunta, setPregunta] = useState({
         enunciado: "Enunciado",
         respuesta1: "Respuesta1",
@@ -18,10 +19,7 @@ const FormularioPregunta = ({ aniadePregunta }) => {
     
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        aniadePregunta({
-            ...pregunta
-        });
+        addQuestion({ ...pregunta });
 
         Swal.fire({
             position: "top-end",
@@ -30,7 +28,6 @@ const FormularioPregunta = ({ aniadePregunta }) => {
             showConfirmButton: false,
             timer: 1200
         });
-        
     };
 
     const handleChange = (e) => {

@@ -1,31 +1,33 @@
-import React, { useState } from 'react';
+import React, { createContext, useState } from 'react';
 import FormularioPregunta from './componentes/FormularioPregunta';
 import Pregunta from './componentes/Pregunta';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+export const CharacterContext = createContext();
 
 function App() {
   const [preguntas, setPreguntas] = useState([]);
 
   const addQuestion = (nueva) => {
-        nueva.id = crypto.randomUUID();
-
-        setPreguntas([...preguntas, nueva]);
+    nueva.id = crypto.randomUUID();
+    setPreguntas([...preguntas, nueva]);
   };
 
   const deleteQuestion = (id) => {
     setPreguntas((prevPreguntas) => prevPreguntas.filter((pregunta) => pregunta.id !== id));
-};
+  };
 
   return (
-    <div>
-      <FormularioPregunta aniadePregunta={addQuestion} />
+    <CharacterContext.Provider value={{ preguntas, addQuestion, deleteQuestion }}>
       <div>
-        {preguntas.map((pregunta, index) => (
-          <Pregunta key={pregunta.id} pregunta={pregunta} deleteQuestion={deleteQuestion} index={index} />
-        ))}
-
+        <FormularioPregunta />
+        <div>
+          {preguntas.map((pregunta, index) => (
+            <Pregunta key={pregunta.id} pregunta={pregunta} index={index} />
+          ))}
+        </div>
       </div>
-    </div>
+    </CharacterContext.Provider>
   );
 }
 

@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Swal from 'sweetalert2';
+import { CharacterContext } from '../App';
 
-const Pregunta = ({ pregunta, deleteQuestion, index}) => {
+const Pregunta = ({ pregunta, index}) => {
+    const { deleteQuestion } = useContext(CharacterContext);
     const { id, enunciado, respuesta1, respuesta2, respuesta3, respuesta4 } = pregunta;
 
     const handleDeleteQuestion = () => {
